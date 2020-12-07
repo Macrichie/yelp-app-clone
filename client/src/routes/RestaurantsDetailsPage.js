@@ -32,9 +32,9 @@ function RestaurantsDetailsPage() {
           <h1 className="text-center display-1">
             {selectedRestaurant.restaurant.name.toUpperCase()}
           </h1>
-          <div class="text-center">
+          <div className="text-center">
             <StarRating rating={selectedRestaurant.restaurant.average_rating} />
-            <span class="text-warning ml-1">
+            <span className="text-warning ml-1">
               {selectedRestaurant.restaurant.count
                 ? `(${selectedRestaurant.restaurant.count})`
                 : "(0)"}

@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const db = require("./db");
 
 const morgan = require("morgan");
@@ -14,6 +15,12 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 // middleware to make res.body available for use
 app.use(express.json());
+
+if (process.env.NODE_ENV === "production") {
+  //server static content
+  //npm run build
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
 
 // GET all Restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
@@ -123,7 +130,7 @@ app.put("/api/v1/restaurants/:id", async (req, res) => {
 // Delete a Restaurant
 app.delete("/api/v1/restaurants/:id", async (req, res) => {
   try {
-    const result = await db.query("delete from restaurants where id = $1", [
+    const result = await db.query("DELETE FROM restaurants where id = $1", [
       req.params.id,
     ]);
     res.status(204).json({
