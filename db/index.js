@@ -1,5 +1,5 @@
-const { Pool } = require("pg/lib");
-
+const Pool = require("pg").Pool;
+require("dotenv").config();
 // Development environment
 const devConfig = `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`;
 

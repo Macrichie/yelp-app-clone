@@ -1,15 +1,13 @@
-require("dotenv").config();
+
 const express = require("express");
+const app = express();
 const cors = require("cors");
 const path = require("path");
 const db = require("./db");
-
-const morgan = require("morgan");
-
-const app = express();
-
+// const morgan = require("morgan");
 // environment
 const port = process.env.PORT || 3000;
+
 
 // middleware for cross origin request
 app.use(cors());
@@ -139,6 +137,11 @@ app.delete("/api/v1/restaurants/:id", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+// handle all wrong routes gracefully
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
