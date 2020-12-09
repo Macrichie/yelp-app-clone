@@ -6,7 +6,7 @@ const path = require("path");
 const db = require("./db");
 // const morgan = require("morgan");
 // environment
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 
 // middleware for cross origin request
